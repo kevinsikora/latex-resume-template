@@ -1,0 +1,126 @@
+% strip all extended attributes like (Where from) - mac command
+% xattr -c /path/to/file.pdf
+
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage[sfdefault]{roboto}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage[none]{hyphenat} % disable automatic hyphenation // ATS related
+\usepackage[hidelinks]{hyperref}    % hidden clickabble links
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% More space between major resume sections
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+\titlespacing{\section}{0pt}{22pt}{10pt}
+
+% Indent all bullet points
+\setlist[itemize]{
+    leftmargin=0.25in,
+    itemsep=0pt,
+    topsep=1pt,
+    after=\vspace{10pt}
+}
+
+% custom commands
+\newcommand{\websiteslabel}{\textit{Websites:}}
+\newcommand{\githublabel}{\textit{GitHub:}}
+\newcommand{\techlabel}{\textit{Technologies:}}
+\newcommand{\italicizedlabel}[1]{\textit{#1:}} % \italicizedlabel{Some label}
+
+% metadata related
+\usepackage[en-US]{datetime2} % Sets default date style
+\DTMsetdatestyle{iso}
+\hypersetup{
+    pdfauthor={Kevin Sikora},
+    pdftitle={Kevin Sikora - Resume - \today},
+    pdfsubject={Kevin Sikora - Resume - \today},    
+    pdfkeywords={Kevin Sikora, Resume, Website operations, Process improvement, Business ownership, WordPress, WordPress plugin development, Software engineer, Software testing, Quality Assurance, SDET, QA, Drone pilot},
+    pdfcreator={},
+    pdfproducer={},
+    pdfnewwindow=true
+}
+
+\begin{document}
+
+% ---------- Header ----------
+\begin{center}
+    {\Huge \textbf{Your Name}} \\[6pt]
+    {\small
+    \href{mailto:your.email@example.com}{your.email@example.com}
+    \, | \,
+    (123) 456-7890
+    \, | \,
+    \href{https://www.linkedin.com/in/your-linkedin}{linkedin.com/in/your-linkedin}
+    } \\[4pt]
+    {\small Your Professional Title}
+\end{center}
+
+% ---------- Summary ----------
+\section*{Summary}
+
+Write a brief 2-4 sentence summary here. Focus on your main skills, years of experience, career focus, and the value you bring to a team.
+
+% ---------- Work Experience ----------
+\section*{Work Experience}
+
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\textbf{Company Name} & Month Year - Present \\
+\textit{Job Title} & City, State \\
+\end{tabular*}
+
+\begin{itemize}
+    \item Describe your responsibility, achievement, or impact using strong action words.
+    \item Add numbers when possible, such as revenue, time saved, team size, or growth.
+    \item \techlabel{} Python, SQL, Tableau, Salesforce, Excel
+\end{itemize}
+
+\vspace{10pt}
+
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\textbf{Previous Company Name} & Month Year - Month Year \\
+\textit{Previous Job Title} & City, State \\
+\end{tabular*}
+
+\begin{itemize}
+    \item Describe your work and the result it created.
+    \item Highlight tools, processes, leadership, or business impact.
+    \item \techlabel{} JavaScript, React, Node.js, Git, Jira
+\end{itemize}
+
+% ---------- Certifications ----------
+\section*{Certifications}
+
+\begin{itemize}
+    \item \begin{tabularx}{\linewidth}{@{}X r@{}}
+        \textbf{FAA Part 107 Remote Pilot Certificate} & February 2026 \\
+    \end{tabularx}
+    \item \begin{tabularx}{\linewidth}{@{}X r@{}}
+        \textbf{EASA UAS Remote Pilot Certificate} -- Drone Open Category A1+A3 & February 2026 \\
+    \end{tabularx}
+\end{itemize}
+
+% ---------- Education ----------
+\section*{Education}
+
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+% \textbf{Degree or Program Name} & Graduation Year \\
+% School Name & City, State \\
+\textbf{School Name} & City, State \\
+\textit{Degree or Program Name} \\
+
+
+\end{tabular*}
+
+\end{document}
