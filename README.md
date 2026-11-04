@@ -7,7 +7,8 @@ A LaTeX resume template that produces clean, ATS-friendly (Applicant Tracking Sy
 ```
 latex-resume-template/
 ├── README.md
-└── latex-resume-template.tex
+├── latex-resume-template.tex
+└── resumeExample.pdf
 ```
 
 ## Usage
