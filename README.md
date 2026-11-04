@@ -1,6 +1,6 @@
 # LaTeX Resume Template
 
-A generic LaTeX resume template that produces clean, ATS-friendly (Applicant Tracking System) resumes. Use it locally or on [Overleaf](https://www.overleaf.com), where you can edit the source and preview the PDF right away.
+A LaTeX resume template that produces clean, ATS-friendly (Applicant Tracking System) resumes. Use it locally or on [Overleaf](https://www.overleaf.com), where you can edit the source and preview the PDF right away.
 
 ## Project Structure
 
@@ -18,10 +18,10 @@ latex-resume-template/
 
 ## After Generating the Resume
 
-Remove unneeded file metadata attributes from the finished PDF by running the following command:
+Remove unneeded file metadata attributes from the finished PDF by running the following macOS command:
 
 ```bash
 xattr -c /path/to/file.pdf
 ```
 
-The above command will only work on macOS.
+This will make your user-specific metadata stand out more.

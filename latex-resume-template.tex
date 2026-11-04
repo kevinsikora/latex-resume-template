@@ -1,5 +1,9 @@
-% strip all extended attributes like (Where from) - mac command
+% ---
+% the following macOS command will strip all extended attributes
+% like (Where from) from a file making the (user-specific metadata
+% stand out more
 % xattr -c /path/to/file.pdf
+% ---
 
 \documentclass[11pt]{article}
 
@@ -10,51 +14,92 @@
 \usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage[none]{hyphenat} % disable automatic hyphenation // ATS related
-\usepackage[hidelinks]{hyperref}    % hidden clickabble links
+\usepackage[hidelinks]{hyperref} % hidden clickabble links
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 
-% More space between major resume sections
-\titleformat{\section}
-  {\large\bfseries}
-  {}
-  {0em}
-  {}
-  [\titlerule]
 
-\titlespacing{\section}{0pt}{22pt}{10pt}
-
-% Indent all bullet points
-\setlist[itemize]{
-    leftmargin=0.25in,
-    itemsep=0pt,
-    topsep=1pt,
-    after=\vspace{10pt}
-}
-
-% custom commands
-\newcommand{\websiteslabel}{\textit{Websites:}}
-\newcommand{\githublabel}{\textit{GitHub:}}
-\newcommand{\techlabel}{\textit{Technologies:}}
-\newcommand{\italicizedlabel}[1]{\textit{#1:}} % \italicizedlabel{Some label}
-
-% metadata related
-\usepackage[en-US]{datetime2} % Sets default date style
+% ---
+% user-specific metadata
+% ---
+\usepackage[en-US]{datetime2} % sets default date style
 \DTMsetdatestyle{iso}
 \hypersetup{
     pdfauthor={Kevin Sikora},
     pdftitle={Kevin Sikora - Resume - \today},
     pdfsubject={Kevin Sikora - Resume - \today},    
-    pdfkeywords={Kevin Sikora, Resume, Website operations, Process improvement, Business ownership, WordPress, WordPress plugin development, Software engineer, Software testing, Quality Assurance, SDET, QA, Drone pilot},
+    pdfkeywords={Software engineer, SDET, QA, Software testing, WordPress plugin development, Drone pilot},
     pdfcreator={},
     pdfproducer={},
     pdfnewwindow=true
 }
 
-\begin{document}
 
-% ---------- Header ----------
+% ---
+% company and position formatting
+% ---
+\newcounter{companycount}
+\newcounter{positioncount}
+
+\newcommand{\companyheader}[2]{%
+    \ifnum\value{companycount}>0
+        \par\addvspace{10pt}
+    \fi
+    \stepcounter{companycount}
+    \setcounter{positioncount}{0}
+    \noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{#1} & #2 \\
+    \end{tabular*}
+    \par\nobreak
+}
+
+\newcommand{\positionheader}[2]{%
+    \ifnum\value{positioncount}>0
+        \par\addvspace{5pt}
+    \fi
+    \stepcounter{positioncount}
+    \noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textit{#1} & #2 \\
+    \end{tabular*}
+    \par\nobreak
+}
+
+
+% ---
+% optional custom commands
+% ---
+\newcommand{\websiteslabel}{\textit{Websites:}}
+\newcommand{\githublabel}{\textit{GitHub:}}
+\newcommand{\techlabel}{\textit{Technologies:}}
+\newcommand{\italicizedlabel}[1]{\textit{#1:}} % \italicizedlabel{Some label}
+
+
+% ---
+% section heading formatting
+% ---
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{22pt}{10pt}
+
+
+% ---
+% indent all bullet points
+% ---
+\setlist[itemize]{
+    leftmargin=0.25in,
+    itemsep=0pt,
+    topsep=1pt
+}
+
+
+\begin{document} % specific resume information gets listed below
+
+
+% ---
+% Resume header
+% ---
 \begin{center}
     {\Huge \textbf{Your Name}} \\[6pt]
     {\small
@@ -67,60 +112,86 @@
     {\small Your Professional Title}
 \end{center}
 
-% ---------- Summary ----------
+
+% ---
+% Candidate summary
+% ---
 \section*{Summary}
 
 Write a brief 2-4 sentence summary here. Focus on your main skills, years of experience, career focus, and the value you bring to a team.
 
-% ---------- Work Experience ----------
+
+% ---
+% Work Experience
+% ---
 \section*{Work Experience}
+\setcounter{companycount}{0} % used for spacing between the listed companies
 
-\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-\textbf{Company Name} & Month Year - Present \\
-\textit{Job Title} & City, State \\
-\end{tabular*}
-
+% copy and paste this section for each company you worked at
+\companyheader{Company Name}{City, State}
+\positionheader{Job Title}{Month Year - Month Year}
 \begin{itemize}
     \item Describe your responsibility, achievement, or impact using strong action words.
     \item Add numbers when possible, such as revenue, time saved, team size, or growth.
+    \item \websiteslabel{} https://LiveTheDTOUR.com, https://CareerCurveball.com    
+    \item \githublabel{} https://github.com/sikoracollective
     \item \techlabel{} Python, SQL, Tableau, Salesforce, Excel
 \end{itemize}
 
-\vspace{10pt}
-
-\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-\textbf{Previous Company Name} & Month Year - Month Year \\
-\textit{Previous Job Title} & City, State \\
-\end{tabular*}
-
+\companyheader{Company Name}{City, State}
+\positionheader{Job Title}{Month Year - Month Year}
 \begin{itemize}
     \item Describe your work and the result it created.
     \item Highlight tools, processes, leadership, or business impact.
     \item \techlabel{} JavaScript, React, Node.js, Git, Jira
 \end{itemize}
 
-% ---------- Certifications ----------
+\companyheader{Company Name}{City, State}
+\positionheader{Job Title}{Month Year - Month Year}
+% copy this section to list different positions you had at the same company
+\begin{itemize}
+    \item Describe your work and the result it created.
+    \item Highlight tools, processes, leadership, or business impact.
+\end{itemize}
+\positionheader{Job Title}{Month Year - Month Year}
+\begin{itemize}
+    \item Describe your work and the result it created.
+    \item Highlight tools, processes, leadership, or business impact.
+\end{itemize}
+
+
+% ---
+% Certifications
+% ---
 \section*{Certifications}
 
+% copy and paste this section for each certification you have
 \begin{itemize}
     \item \begin{tabularx}{\linewidth}{@{}X r@{}}
         \textbf{FAA Part 107 Remote Pilot Certificate} & February 2026 \\
     \end{tabularx}
+    % copy and paste the following section as many times as need be
     \item \begin{tabularx}{\linewidth}{@{}X r@{}}
         \textbf{EASA UAS Remote Pilot Certificate} -- Drone Open Category A1+A3 & February 2026 \\
     \end{tabularx}
 \end{itemize}
 
-% ---------- Education ----------
+
+% ---
+% Education
+% ---
 \section*{Education}
 
+% copy and paste this section for each degree you have
 \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-% \textbf{Degree or Program Name} & Graduation Year \\
-% School Name & City, State \\
-\textbf{School Name} & City, State \\
-\textit{Degree or Program Name} \\
-
-
+    \textbf{School Name} & City, State \\
+    % example: \textbf{University of Wisconsin -- Madison} & Madison, Wisconsin \\
+    % copy and paste this section as much as you need to if you received multiple
+    % degrees from a university
+    \textit{Degree or Program Name} & Month Year \\
+    % example: \textit{Bachelor of Science in Computer Science} &  June 2016 \\
+    \textit{Degree or Program Name} \\ % remove the month year if you don't want it
 \end{tabular*}
 
 \end{document}
+
